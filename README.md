@@ -1,4 +1,3 @@
-````md
 🔐 Incident Response Report  
 Incident: Azuki Logistics – Ransomware Attack (JADE SPIDER / SilentLynx)  
 Date: 27 November 2025  
@@ -103,7 +102,7 @@ The attack followed a deliberate, methodical progression aligned with real-world
 [ POST-IMPACT / LAST TELEMETRY ]
    - Last observed interaction on azuki-sl: 05/12/2025 11:46:33.527 UTC
    - First interaction: 18/11/2025, 01:39:01.221 UTC
-````
+```
 
 ---
 
