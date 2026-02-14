@@ -1,3 +1,4 @@
+````md
 🔐 Incident Response Report  
 Incident: Azuki Logistics – Ransomware Attack (JADE SPIDER / SilentLynx)  
 Date: 27 November 2025  
@@ -25,13 +26,13 @@ The attack followed a deliberate, methodical progression aligned with real-world
 
 # **Azuki Logistics** Corporate Network
 
-## 🖥️ Environment
+### 🖥️ Environment
 <img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/36568b34-1819-45fa-91bb-03901ecd51cb" />
 
 
 ###
 **End of Threat Hunt Summary:**
-
+```bash
 [ External Attacker ]
         |
         |  (Phishing / initial foothold)
@@ -102,21 +103,23 @@ The attack followed a deliberate, methodical progression aligned with real-world
 [ POST-IMPACT / LAST TELEMETRY ]
    - Last observed interaction on azuki-sl: 05/12/2025 11:46:33.527 UTC
    - First interaction: 18/11/2025, 01:39:01.221 UTC
-
+````
 
 ---
 
 ## 🐧 PHASE 1 — Linux Backup Server Compromise (Flags 1–12)
 
-### FLAG 1 — Lateral Movement: Remote Access (SSH)  
+### FLAG 1 — Lateral Movement: Remote Access (SSH)
+
 MITRE: T1021.004 – Remote Services (SSH)
 
-Flag Format: IP address  
+Flag Format: IP address
 Question: What IP address initiated the connection to the backup server?
 
-Based on the info so far we know a device was compromised and it was then used to remote access the linux server. First I checked ```DeviceProcessEvents``` to identify any device name containing "azuki" run a command containing "ssh". I also filtered the search within the November month. I started on the 1st to see any earlier activity than the 27th when the attack was idenitfied.
+Based on the info so far we know a device was compromised and it was then used to remote access the linux server. First I checked `DeviceProcessEvents` to identify any device name containing "azuki" run a command containing "ssh". I also filtered the search within the November month. I started on the 1st to see any earlier activity than the 27th when the attack was identified.
 
 **KQL Used**
+
 ```kql
 DeviceProcessEvents
 | where DeviceName contains "azuki"
@@ -124,7 +127,7 @@ DeviceProcessEvents
 | where Timestamp between (datetime(2025-11-01) .. datetime(2025-11-29))
 | project Timestamp, DeviceName, FileName, ProcessCommandLine
 | order by Timestamp asc
-````
+```
 
 <img width="740" alt="image" src="https://github.com/user-attachments/assets/7367a718-6b3b-4083-aee1-5e8f8559f6f5" />
 
@@ -162,12 +165,12 @@ Next phase, I will investigate the connection.
 ### FLAG 2 — Attack Source
 
 MITRE: T1021.004
-Flag Format: username
-Question: What account was used to access the backup server?
+Flag Format: IP address
+Question: What IP address initiated the connection to the backup server?
 
 **KQL Used**
 
-Verifying whether onnection was initiated at network level
+Verifying whether connection was initiated at network level
 
 ```kql
 DeviceNetworkEvents
@@ -212,8 +215,8 @@ Azuki-adminpc initiated the connection to the Linux Server. Its IP was identifie
 ### FLAG 3 — Compromised Account
 
 MITRE: T1078.002 – Valid Accounts
-Flag Format: Full command line
-Question: What command listed the backup directory contents?
+Flag Format: username
+Question: What account was used to access the backup server?
 
 **Evidence**
 
@@ -256,7 +259,7 @@ DeviceProcessEvents
 
 The Linux Server Device Name is "azuki-backupsrv.zi5bvzlx0idetcyt0okhu05hda.cx.internal.cloudapp.net"
 
-Next, I will search the the exact command run to view directory contents.
+Next, I will search the exact command run to view directory contents.
 
 ```kql
 DeviceProcessEvents
@@ -294,7 +297,7 @@ Flag Format: Full command line
 Question: What command searched for backup archives?
 
 Commands used to search in Linux = "find"
-Commands used to view archives in linux: "tar", "unzip", "7z"
+Commands used to view archives in Linux: "tar", "unzip", "7z"
 
 ```kql
 DeviceProcessEvents
@@ -425,7 +428,7 @@ DeviceProcessEvents
 ```
 
 <img width="1318" height="290" alt="image" src="https://github.com/user-attachments/assets/df538a2f-c4b8-45da-925e-e6c31f9abb3f" />
-The first instance of a download after 
+The first instance of a download after
 
 **Command**
 
@@ -590,7 +593,7 @@ systemctl disable cron
 ```
 
 **Findings Flag 12**
-Backup scheduling was permanently disabled across reboots. This was done thorugh systemctl which manages start, stop, enable, disable, restart of services.
+Backup scheduling was permanently disabled across reboots. This was done through systemctl which manages start, stop, enable, disable, restart of services.
 
 <details>
 <summary>KQL breakdown</summary>
@@ -791,7 +794,7 @@ Database processes were forcefully terminated to release locked files prior to e
 sqlservr.exe = Microsoft SQL Server engine
 It keeps database files open in memory.
 
-While running, Windows places locks on(therefore had to be terminated):
+While running, Windows places locks on (therefore had to be terminated):
 .mdf (main database)
 .ndf (secondary data)
 .ldf (transaction logs)
@@ -818,7 +821,7 @@ Question: What command deleted recovery points?
 DeviceProcessEvents
 | where DeviceName == "azuki-adminpc"
 | where ProcessCommandLine has_any ("vssadmin","shadows")
-| where ProcessCommandLine has "delete" //searching for delet specific
+| where ProcessCommandLine has "delete" //searching for delete specific
 | where Timestamp between (datetime(2025-11-19) .. datetime(2025-12-05))
 | project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine
 | order by Timestamp asc
@@ -938,7 +941,7 @@ DeviceProcessEvents
 | order by Timestamp asc
 ```
 
-<img width="1366" height="121" alt="image" src="https://github.com/user-attachments/assets/1aade9e2-86a3-4f5d-9690-738556d3f298" />
+<img width="1366" height="121" alt="image" src="https://github.com/user-attachments/assets/1aade9e2-86a3-4f5d-9690-738556d3d4be" />
 
 **Command**
 
@@ -1025,7 +1028,7 @@ Microsoft\Windows\Security\SecurityHealthService
 ```
 
 **Findings Flag 24**
-A scheduled task masked as Security Health Serivice ensures privileged persistence and automatic malware execution after reboot.
+A scheduled task masked as Security Health Service ensures privileged persistence and automatic malware execution after reboot.
 
 <details>
 <summary>KQL breakdown</summary>
@@ -1103,7 +1106,7 @@ A ransom note was dropped on the system, confirming successful encryption and at
 
 <details>
 <summary>KQL breakdown</summary>
-<p>This flag is typically supported by <b>DeviceFileEvents</b> searches for file creation patterns (e.g., many identical <b>.txt</b> files created across folders) and correlation to the incident window; the goal is to identify a single note filename repeatedly created as a post-encryption indicator.</p>
+<p>This flag is typically supported by <b>DeviceFileEvents</b> searches for file creation patterns (e.g., a note <b>.txt</b> created across folders) and correlation to the incident window; the goal is to identify the note filename used as a post-encryption indicator.</p>
 </details>
 
 <details>
@@ -1137,7 +1140,7 @@ DeviceProcessEvents
 
 <img width="1712" height="311" alt="image" src="https://github.com/user-attachments/assets/1af9c6cd-0784-4cc3-93d3-e19b104a107d" />
 
-Findings: just regular ystem processes running. The last interaction from compromised devices was 05/12/2025, 11:46:33.527
+Findings: just regular system processes running. The last interaction from compromised devices was 05/12/2025, 11:46:33.527 UTC.
 
 ---
 
