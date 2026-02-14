@@ -1,16 +1,22 @@
-🔐 Incident Response Report  
-Incident: Azuki Logistics – Ransomware Attack (JADE SPIDER / SilentLynx)  
-Date: 27 November 2025  
-Prepared by: SOC Analyst  
-Data Source: Microsoft Defender for Endpoint (MDE) Advanced Hunting 
-
----
+# 🚨 Threat Hunt Scenario - Azuki Dead in The Water 🌊
 
 ## Executive Summary
 
 Azuki Logistics experienced a multi-stage ransomware attack conducted by a financially motivated threat actor consistent with JADE SPIDER (SilentLynx).  
 The attacker gained an initial foothold on a Windows administrative workstation, pivoted to a Linux backup server to destroy recovery infrastructure, then returned to the Windows environment to deploy ransomware at scale, inhibit all recovery mechanisms, establish persistence, and remove forensic evidence.  
 The attack followed a deliberate, methodical progression aligned with real-world ransomware operations and resulted in successful encryption, confirmed by the creation of a ransom note.
+
+**🔐 Incident Response Report** 
+Incident: Azuki Logistics – Ransomware Attack (JADE SPIDER / SilentLynx)  
+Date: 27 November 2025  
+Prepared by: SOC Analyst  
+Data Source: Microsoft Defender for Endpoint (MDE) Advanced Hunting 
+
+## Azuki Logistics Corporate Network
+
+<p align="center">
+  <img width="480" src="https://github.com/user-attachments/assets/36568b34-1819-45fa-91bb-03901ecd51cb" />
+</p>
 
 ---
 
@@ -22,12 +28,6 @@ The attack followed a deliberate, methodical progression aligned with real-world
 - azuki-sl – Secondary Windows system affected by recovery inhibition  
 
 ---
-
-# **Azuki Logistics** Corporate Network
-
-### 🖥️ Environment
-<img width="480" alt="" src="https://github.com/user-attachments/assets/36568b34-1819-45fa-91bb-03901ecd51cb" />
-
 
 ###
 **End of Threat Hunt Summary:**
@@ -102,6 +102,57 @@ The attack followed a deliberate, methodical progression aligned with real-world
 [ POST-IMPACT / LAST TELEMETRY ]
    - Last observed interaction on azuki-sl: 05/12/2025 11:46:33.527 UTC
    - First interaction: 18/11/2025, 01:39:01.221 UTC
+```
+
+---
+```
+## 📑 Table of Contents
+
+- [Executive Summary](#executive-summary)
+- [Azuki Logistics Corporate Network](#azuki-logistics-corporate-network)
+- [Affected Systems](#affected-systems)
+- [End of Threat Hunt Summary](#end-of-threat-hunt-summary)
+
+### 🐧 Phase 1 — Linux Backup Server Compromise (Flags 1–12)
+- [Flag 1 — Lateral Movement: Remote Access (SSH)](#flag-1--lateral-movement-remote-access-ssh)
+- [Flag 2 — Attack Source](#flag-2--attack-source)
+- [Flag 3 — Compromised Account](#flag-3--compromised-account)
+- [Flag 4 — Directory Enumeration](#flag-4--directory-enumeration)
+- [Flag 5 — File Search](#flag-5--file-search)
+- [Flag 6 — Account Enumeration](#flag-6--account-enumeration)
+- [Flag 7 — Scheduled Job Reconnaissance](#flag-7--scheduled-job-reconnaissance)
+- [Flag 8 — Tool Transfer](#flag-8--tool-transfer)
+- [Flag 9 — Credential Access](#flag-9--credential-access)
+- [Flag 10 — Data Destruction](#flag-10--data-destruction)
+- [Flag 11 — Service Stopped](#flag-11--service-stopped)
+- [Flag 12 — Service Disabled](#flag-12--service-disabled)
+
+### 💻 Phase 2 — Windows Ransomware Deployment (Flags 13–15)
+- [Flag 13 — Remote Execution Tool](#flag-13--remote-execution-tool)
+- [Flag 14 — Deployment Command](#flag-14--deployment-command)
+- [Flag 15 — Malicious Payload](#flag-15--malicious-payload)
+
+### 🔥 Phase 3 — Recovery Inhibition (Flags 16–22)
+- [Flag 16 — Shadow Service Stopped](#flag-16--shadow-service-stopped)
+- [Flag 17 — Backup Engine Stopped](#flag-17--backup-engine-stopped)
+- [Flag 18 — Process Termination](#flag-18--process-termination)
+- [Flag 19 — Recovery Point Deletion](#flag-19--recovery-point-deletion)
+- [Flag 20 — Shadow Storage Limitation](#flag-20--shadow-storage-limitation)
+- [Flag 21 — Recovery Disabled](#flag-21--recovery-disabled)
+- [Flag 22 — Backup Catalog Deletion](#flag-22--backup-catalog-deletion)
+
+### 🔒 Phase 4 — Persistence (Flags 23–24)
+- [Flag 23 — Registry Autorun](#flag-23--registry-autorun)
+- [Flag 24 — Scheduled Task](#flag-24--scheduled-task)
+
+### 🧹 Phase 5 — Anti-Forensics (Flag 25)
+- [Flag 25 — Journal Deletion](#flag-25--journal-deletion)
+
+### 💀 Phase 6 — Ransomware Success (Flag 26)
+- [Flag 26 — Ransom Note](#flag-26--ransom-note)
+
+- [Last Interaction](#last-interaction)
+- [Final Assessment](#4-final-assessment)
 ```
 
 ---
@@ -1159,5 +1210,3 @@ This incident represents a complete, end-to-end ransomware operation:
 **Detection Gap:** High
 **Confidence:** High (evidence corroborated across MDE telemetry)
 
-```
-```
