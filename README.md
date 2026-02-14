@@ -26,7 +26,7 @@ The attack followed a deliberate, methodical progression aligned with real-world
 # **Azuki Logistics** Corporate Network
 
 ### 🖥️ Environment
-<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/36568b34-1819-45fa-91bb-03901ecd51cb" />
+<img width="480" alt="" src="https://github.com/user-attachments/assets/36568b34-1819-45fa-91bb-03901ecd51cb" />
 
 
 ###
@@ -128,7 +128,7 @@ DeviceProcessEvents
 | order by Timestamp asc
 ```
 
-<img width="740" alt="image" src="https://github.com/user-attachments/assets/7367a718-6b3b-4083-aee1-5e8f8559f6f5" />
+<img width="740" alt="" src="https://github.com/user-attachments/assets/7367a718-6b3b-4083-aee1-5e8f8559f6f5" />
 
 **Result**
 "ssh.exe" backup-admin@10.1.0.189
@@ -182,7 +182,7 @@ DeviceNetworkEvents
 
 A TCP session was established (or at least reached the connection stage). The OS only logs a network event when a socket is opened.
 
-<img width="740" alt="image" src="https://github.com/user-attachments/assets/60dfe525-9424-468b-8086-0a844107eff4" />
+<img width="740" alt="" src="https://github.com/user-attachments/assets/60dfe525-9424-468b-8086-0a844107eff4" />
 
 ```kql
 DeviceNetworkEvents
@@ -192,7 +192,7 @@ DeviceNetworkEvents
 | order by Timestamp asc
 ```
 
-**Result** <img width="740" alt="image" src="https://github.com/user-attachments/assets/7f829501-7299-4b50-9e9f-c1af6ac82255" />
+**Result** <img width="740" alt="" src="https://github.com/user-attachments/assets/7f829501-7299-4b50-9e9f-c1af6ac82255" />
 
 **Findings Flag 2**
 Device LocalIP = 10.1.0.108
@@ -254,7 +254,7 @@ DeviceProcessEvents
 | order by count_ desc
 ```
 
-<img width="600" alt="image" src="https://github.com/user-attachments/assets/97c9f2ca-0b1a-43a4-a832-31551bbfa80e" />
+<img width="600" alt="" src="https://github.com/user-attachments/assets/97c9f2ca-0b1a-43a4-a832-31551bbfa80e" />
 
 The Linux Server Device Name is "azuki-backupsrv.zi5bvzlx0idetcyt0okhu05hda.cx.internal.cloudapp.net"
 
@@ -269,7 +269,7 @@ DeviceProcessEvents
 | order by Timestamp asc
 ```
 
-<img width="740" alt="image" src="https://github.com/user-attachments/assets/db2239cc-07d6-4f5e-b19c-1b91ada715d0" />
+<img width="740" alt="" src="https://github.com/user-attachments/assets/db2239cc-07d6-4f5e-b19c-1b91ada715d0" />
 
 AccountName = backup-admin
 
@@ -308,7 +308,7 @@ DeviceProcessEvents
 | order by Timestamp asc
 ```
 
-<img width="740" alt="image" src="https://github.com/user-attachments/assets/ad73ae38-bcc4-41a7-847c-43667ffd470c" />
+<img width="740" alt="" src="https://github.com/user-attachments/assets/ad73ae38-bcc4-41a7-847c-43667ffd470c" />
 
 **Command**
 
@@ -386,7 +386,7 @@ DeviceProcessEvents
 
 Commands to look for "crontab", "cat /etc/crontab"
 
-<img width="740" alt="image" src="https://github.com/user-attachments/assets/92ce601e-bcdd-4fbe-95e0-35b076c7617a" />
+<img width="740" alt="" src="https://github.com/user-attachments/assets/92ce601e-bcdd-4fbe-95e0-35b076c7617a" />
 
 **Command**
 
@@ -426,7 +426,7 @@ DeviceProcessEvents
 | order by Timestamp asc
 ```
 
-<img width="1318" height="290" alt="image" src="https://github.com/user-attachments/assets/df538a2f-c4b8-45da-925e-e6c31f9abb3f" />
+<img width="1318" height="290" alt="" src="https://github.com/user-attachments/assets/df538a2f-c4b8-45da-925e-e6c31f9abb3f" />
 The first instance of a download after
 
 **Command**
@@ -466,7 +466,7 @@ DeviceProcessEvents
 | order by Timestamp asc
 ```
 
-<img width="1153" height="130" alt="image" src="https://github.com/user-attachments/assets/d16b8278-09d5-483c-92a0-5e59dc425f35" />
+<img width="1153" height="130" alt="" src="https://github.com/user-attachments/assets/d16b8278-09d5-483c-92a0-5e59dc425f35" />
 
 **Command**
 
@@ -507,7 +507,7 @@ DeviceProcessEvents
 -r - recursive = deletes directories and all their contents
 -f - force = skips prompts and ignores errors
 
-<img width="1317" height="287" alt="image" src="https://github.com/user-attachments/assets/6683d941-840d-4043-b0b4-16c09685bb48" />
+<img width="1317" height="287" alt="" src="https://github.com/user-attachments/assets/6683d941-840d-4043-b0b4-16c09685bb48" />
 
 **Command**
 
@@ -536,7 +536,7 @@ MITRE: T1489 – Service Stop
 Flag Format: Full command line
 Question: What command stopped the backup service?
 
-<img width="976" height="161" alt="image" src="https://github.com/user-attachments/assets/57876801-96cd-49bb-97d7-3ab596dc8631" />
+<img width="976" height="161" alt="" src="https://github.com/user-attachments/assets/57876801-96cd-49bb-97d7-3ab596dc8631" />
 
 ```kql
 DeviceProcessEvents
@@ -583,7 +583,7 @@ DeviceProcessEvents
 | order by Timestamp asc
 ```
 
-<img width="1187" height="217" alt="image" src="https://github.com/user-attachments/assets/96518a2f-0b1a-43a4-a832-31551bbfa80e" />
+<img width="1000" alt="" src="https://github.com/user-attachments/assets/96518a2f-0b1a-43a4-a832-31551bbfa80e" />
 
 **Command**
 
@@ -623,7 +623,7 @@ DeviceProcessEvents
 | order by Timestamp asc
 ```
 
-<img width="1473" height="282" alt="image" src="https://github.com/user-attachments/assets/8a02a107-42b0-4cf7-a843-804c8bcf3aaa" />
+<img width="1473" height="282" alt="" src="https://github.com/user-attachments/assets/8a02a107-42b0-4cf7-a843-804c8bcf3aaa" />
 
 **Findings Flag 13**
 PsExec was used for rapid lateral movement across Windows systems.
@@ -711,7 +711,7 @@ DeviceProcessEvents
 | order by Timestamp asc
 ```
 
-<img width="1238" height="281" alt="image" src="https://github.com/user-attachments/assets/e790ea8d-b6ca-4ed4-bc4f-5a1dc845b261" />
+<img width="1238" height="281" alt="" src="https://github.com/user-attachments/assets/e790ea8d-b6ca-4ed4-bc4f-5a1dc845b261" />
 
 **Command**
 
@@ -749,7 +749,7 @@ DeviceProcessEvents
 | order by Timestamp asc
 ```
 
-<img width="1211" height="182" alt="image" src="https://github.com/user-attachments/assets/980d0a9b-d3cf-4685-805d-4ec1e69f8289" />
+<img width="1211" height="182" alt="" src="https://github.com/user-attachments/assets/980d0a9b-d3cf-4685-805d-4ec1e69f8289" />
 
 **Command**
 
@@ -826,7 +826,7 @@ DeviceProcessEvents
 | order by Timestamp asc
 ```
 
-<img width="1331" height="157" alt="image" src="https://github.com/user-attachments/assets/fb2cdc9b-b7e0-4a55-8a95-dde0f2ee903c" />
+<img width="1331" height="157" alt="" src="https://github.com/user-attachments/assets/fb2cdc9b-b7e0-4a55-8a95-dde0f2ee903c" />
 
 **Command**
 
@@ -864,7 +864,7 @@ DeviceProcessEvents
 | order by Timestamp asc
 ```
 
-<img width="1507" height="283" alt="image" src="https://github.com/user-attachments/assets/c4ec3811-10cc-4bcd-817f-bbf922e39a50" />
+<img width="1507" height="283" alt="" src="https://github.com/user-attachments/assets/c4ec3811-10cc-4bcd-817f-bbf922e39a50" />
 
 **Command**
 
@@ -902,7 +902,7 @@ DeviceProcessEvents
 | order by Timestamp asc
 ```
 
-<img width="1606" height="148" alt="image" src="https://github.com/user-attachments/assets/e07a580f-69bb-4576-a8c2-4b713fb1d3bc" />
+<img width="1606" height="148" alt="" src="https://github.com/user-attachments/assets/e07a580f-69bb-4576-a8c2-4b713fb1d3bc" />
 
 **Command**
 
@@ -940,7 +940,7 @@ DeviceProcessEvents
 | order by Timestamp asc
 ```
 
-<img width="1366" height="121" alt="image" src="https://github.com/user-attachments/assets/1aade9e2-86a3-4f5d-9690-738556d3d4be" />
+<img width="1366" height="121" alt="" src="https://github.com/user-attachments/assets/1aade9e2-86a3-4f5d-9690-738556d3d4be" />
 
 **Command**
 
@@ -980,7 +980,7 @@ DeviceRegistryEvents
 | order by Timestamp asc
 ```
 
-<img width="1717" height="232" alt="image" src="https://github.com/user-attachments/assets/8f354226-9de7-48f1-bd29-3c798a3308a3" />
+<img width="1717" height="232" alt="" src="https://github.com/user-attachments/assets/8f354226-9de7-48f1-bd29-3c798a3308a3" />
 
 **Registry Value Name**
 
@@ -1018,7 +1018,7 @@ DeviceProcessEvents
 | order by Timestamp asc
 ```
 
-<img width="1720" height="127" alt="image" src="https://github.com/user-attachments/assets/ac9f175d-a4c0-4d09-bba8-1df63f772edd" />
+<img width="1720" height="127" alt="" src="https://github.com/user-attachments/assets/ac9f175d-a4c0-4d09-bba8-1df63f772edd" />
 
 **Task Path**
 
@@ -1058,7 +1058,7 @@ DeviceProcessEvents
 | order by Timestamp asc
 ```
 
-<img width="1675" height="287" alt="image" src="https://github.com/user-attachments/assets/b3165547-700c-468b-9133-2a7e5dd3d4be" />
+<img width="1675" height="287" alt="" src="https://github.com/user-attachments/assets/b3165547-700c-468b-9133-2a7e5dd3d4be" />
 
 **Command**
 
@@ -1092,7 +1092,7 @@ Question: What is the ransom note filename?
 ```kql
 ```
 
-<img width="1485" height="290" alt="image" src="https://github.com/user-attachments/assets/6d8afd6b-8376-4364-8767-a8cb117c58ce" />
+<img width="1485" height="290" alt="" src="https://github.com/user-attachments/assets/6d8afd6b-8376-4364-8767-a8cb117c58ce" />
 
 **Ransom Note**
 
@@ -1125,7 +1125,7 @@ DeviceProcessEvents
 | order by FirstInteraction asc
 ```
 
-<img width="1156" height="290" alt="image" src="https://github.com/user-attachments/assets/a43203c7-d366-4ae2-9b9f-4c512b9d2dd9" />
+<img width="1156" height="290" alt="" src="https://github.com/user-attachments/assets/a43203c7-d366-4ae2-9b9f-4c512b9d2dd9" />
 
 Verifying last interaction.
 
@@ -1137,7 +1137,7 @@ DeviceProcessEvents
 | order by Timestamp asc
 ```
 
-<img width="1712" height="311" alt="image" src="https://github.com/user-attachments/assets/1af9c6cd-0784-4cc3-93d3-e19b104a107d" />
+<img width="1712" height="311" alt="" src="https://github.com/user-attachments/assets/1af9c6cd-0784-4cc3-93d3-e19b104a107d" />
 
 Findings: just regular system processes running. The last interaction from compromised devices was 05/12/2025, 11:46:33.527 UTC.
 
