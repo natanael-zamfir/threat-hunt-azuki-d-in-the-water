@@ -105,16 +105,18 @@ Data Source: Microsoft Defender for Endpoint (MDE) Advanced Hunting
 ```
 
 ---
-```
-## 📑 Table of Contents
+<details>
+<summary>📑 Table of Contents (Click to Expand)</summary>
 
 - [Executive Summary](#executive-summary)
 - [Azuki Logistics Corporate Network](#azuki-logistics-corporate-network)
 - [Affected Systems](#affected-systems)
-- [End of Threat Hunt Summary](#end-of-threat-hunt-summary)
+- [End of Threat Hunt Summary](#end-of-threat-hunt-summary-high-level-flow)
 
-### 🐧 Phase 1 — Linux Backup Server Compromise (Flags 1–12)
-- [Flag 1 — Lateral Movement: Remote Access (SSH)](#flag-1--lateral-movement-remote-access-ssh)
+---
+
+### 🐧 Phase 1 — Linux Backup Server Compromise
+- [Flag 1 — Lateral Movement (SSH)](#flag-1--lateral-movement-remote-access-ssh)
 - [Flag 2 — Attack Source](#flag-2--attack-source)
 - [Flag 3 — Compromised Account](#flag-3--compromised-account)
 - [Flag 4 — Directory Enumeration](#flag-4--directory-enumeration)
@@ -127,12 +129,16 @@ Data Source: Microsoft Defender for Endpoint (MDE) Advanced Hunting
 - [Flag 11 — Service Stopped](#flag-11--service-stopped)
 - [Flag 12 — Service Disabled](#flag-12--service-disabled)
 
-### 💻 Phase 2 — Windows Ransomware Deployment (Flags 13–15)
+---
+
+### 💻 Phase 2 — Windows Ransomware Deployment
 - [Flag 13 — Remote Execution Tool](#flag-13--remote-execution-tool)
 - [Flag 14 — Deployment Command](#flag-14--deployment-command)
 - [Flag 15 — Malicious Payload](#flag-15--malicious-payload)
 
-### 🔥 Phase 3 — Recovery Inhibition (Flags 16–22)
+---
+
+### 🔥 Phase 3 — Recovery Inhibition
 - [Flag 16 — Shadow Service Stopped](#flag-16--shadow-service-stopped)
 - [Flag 17 — Backup Engine Stopped](#flag-17--backup-engine-stopped)
 - [Flag 18 — Process Termination](#flag-18--process-termination)
@@ -141,19 +147,27 @@ Data Source: Microsoft Defender for Endpoint (MDE) Advanced Hunting
 - [Flag 21 — Recovery Disabled](#flag-21--recovery-disabled)
 - [Flag 22 — Backup Catalog Deletion](#flag-22--backup-catalog-deletion)
 
-### 🔒 Phase 4 — Persistence (Flags 23–24)
+---
+
+### 🔒 Phase 4 — Persistence
 - [Flag 23 — Registry Autorun](#flag-23--registry-autorun)
 - [Flag 24 — Scheduled Task](#flag-24--scheduled-task)
 
-### 🧹 Phase 5 — Anti-Forensics (Flag 25)
+---
+
+### 🧹 Phase 5 — Anti-Forensics
 - [Flag 25 — Journal Deletion](#flag-25--journal-deletion)
 
-### 💀 Phase 6 — Ransomware Success (Flag 26)
+---
+
+### 💀 Phase 6 — Ransomware Success
 - [Flag 26 — Ransom Note](#flag-26--ransom-note)
 
-- [Last Interaction](#last-interaction)
+---
+
 - [Final Assessment](#4-final-assessment)
-```
+
+</details>
 
 ---
 
@@ -1196,17 +1210,28 @@ Findings: just regular system processes running. The last interaction from compr
 
 ## 4. Final Assessment
 
-This incident represents a complete, end-to-end ransomware operation:
+### Root Cause
+Initial access was achieved through credential abuse on a privileged Windows administrative workstation, allowing the attacker to authenticate legitimately and move laterally without triggering early prevention controls.
 
-* Credential abuse
-* Backup destruction (Linux + Windows)
-* Automated lateral movement
-* Recovery inhibition
-* Persistence
-* Anti-forensics
-* Successful encryption
+### Attacker Objective
+The attacker’s objective was financial extortion through ransomware deployment. Actions taken prior to encryption demonstrate deliberate recovery denial by destroying Linux backups, disabling Windows recovery mechanisms, and removing forensic artifacts.
 
-**Impact:** Critical
-**Detection Gap:** High
-**Confidence:** High (evidence corroborated across MDE telemetry)
+### Detection Opportunities
+Earlier detection could have occurred at multiple stages:
 
+* SSH lateral movement from a Windows admin workstation to a Linux backup server
+* Execution of Linux discovery commands within backup directories
+* Use of PsExec for remote execution across multiple hosts
+* Execution of recovery-inhibition commands (VSS, wbadmin, bcdedit)
+* Mass administrative activity occurring within a short timeframe
+
+### Recommended Defensive Improvements
+* Enforce MFA for administrative and service accounts
+* Restrict SSH access between Windows and Linux administrative tiers
+* Monitor and alert on PsExec and admin share usage
+* Implement immutable or offline backups
+* Alert on recovery-inhibition commands (vssadmin, wbadmin, bcdedit, fsutil)
+* Apply least-privilege access to backup infrastructure
+
+### Analyst Confidence Notes
+Timeline reconstruction is based on correlated process and network telemetry from Microsoft Defender for Endpoint. Activity sequence is consistent with known ransomware tradecraft and shows no conflicting evidence within available logs.
