@@ -1,4 +1,28 @@
 # 🚨 Threat Hunt Scenario - Azuki Dead in The Water 🌊
+In this threat hunt competition, I conducted an end-to-end threat hunt and incident response investigation, reconstructing a ransomware attack through endpoint telemetry analysis and incident investigation.
+I investigated a full ransomware attack chain across Windows and Linux using Microsoft Defender for Endpoint telemetry, then rebuilt the attacker timeline from initial access to encryption, persistence, and anti-forensics.
+
+#### Technology Utilised:
+<div>
+  <img src="https://img.shields.io/badge/-Microsoft_Sentinel-00A4EF?&style=for-the-badge&logo=microsoft&logoColor=white" />
+  <img src="https://img.shields.io/badge/-Microsoft_Defender_for_Endpoint-00A4EF?&style=for-the-badge&logo=microsoft&logoColor=white" />
+  <img src="https://img.shields.io/badge/-KQL-005571?&style=for-the-badge&logo=microsoft&logoColor=white" />
+</div>
+
+#### Security Concepts Demonstrated:
+<div>
+  <img src="https://img.shields.io/badge/-Threat_Hunting-6A1B9A?style=for-the-badge&logo=datadog&logoColor=white" />
+  <img src="https://img.shields.io/badge/-Incident_Response-AE0000?style=for-the-badge&logo=security&logoColor=white" />
+  <img src="https://img.shields.io/badge/-Ransomware_Analysis-8B0000?style=for-the-badge&logo=hackaday&logoColor=white" />
+  <img src="https://img.shields.io/badge/-Digital_Forensics-455A64?style=for-the-badge&logo=forensic-science&logoColor=white" />
+  <img src="https://img.shields.io/badge/-Endpoint_Detection_%26_Response-1E88E5?style=for-the-badge&logo=microsoft&logoColor=white" />
+  <img src="https://img.shields.io/badge/-MITRE_ATT%26CK_Mapping-FF6F00?style=for-the-badge&logo=mitre&logoColor=white" />
+  <img src="https://img.shields.io/badge/-Lateral_Movement_Detection-5D4037?style=for-the-badge&logo=probot&logoColor=white" />
+  <img src="https://img.shields.io/badge/-Persistence_Detection-283593?style=for-the-badge&logo=windows&logoColor=white" />
+  <img src="https://img.shields.io/badge/-Anti--Forensics_Analysis-37474F?style=for-the-badge&logo=ghost&logoColor=white" />
+  <img src="https://img.shields.io/badge/-Timeline_Reconstruction-2E7D32?style=for-the-badge&logo=clockify&logoColor=white" />
+</div>
+
 
 ## Executive Summary
 
@@ -107,13 +131,6 @@ Data Source: Microsoft Defender for Endpoint (MDE) Advanced Hunting
 ---
 <details>
 <summary>📑 Table of Contents (Click to Expand)</summary>
-
-- [Executive Summary](#executive-summary)
-- [Azuki Logistics Corporate Network](#azuki-logistics-corporate-network)
-- [Affected Systems](#affected-systems)
-- [End of Threat Hunt Summary](#end-of-threat-hunt-summary-high-level-flow)
-
----
 
 ### 🐧 Phase 1 — Linux Backup Server Compromise
 - [Flag 1 — Lateral Movement (SSH)](#flag-1--lateral-movement-remote-access-ssh)
