@@ -24,7 +24,7 @@ I investigated a full ransomware attack chain across Windows and Linux using Mic
 </div>
 
 
-## Executive Summary
+## Executive Summary (as provided by the competition organisers)
 
 Azuki Logistics experienced a multi-stage ransomware attack conducted by a financially motivated threat actor consistent with JADE SPIDER (SilentLynx).  
 The attacker gained an initial foothold on a Windows administrative workstation, pivoted to a Linux backup server to destroy recovery infrastructure, then returned to the Windows environment to deploy ransomware at scale, inhibit all recovery mechanisms, establish persistence, and remove forensic evidence.  
